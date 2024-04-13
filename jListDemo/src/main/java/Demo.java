@@ -131,8 +131,19 @@ public class Demo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        model.removeElement(txtName.getText());
-        lblMessage.setText("Removed element: " + txtName.getText());
+        boolean needError = true;
+        for(int i = 0 ; i < model.getSize(); i++){
+            if(model.getElementAt(i).equals(txtName.getText())){
+                model.removeElement(txtName.getText());
+                lblMessage.setText("Removed element: " + txtName.getText());
+                needError = false;
+                break;
+            }
+        }
+        
+        if(needError == true){
+                lblMessage.setText("Non-existent database: " + txtName.getText());
+            }
         txtName.setText("");
     }//GEN-LAST:event_btnRemoveActionPerformed
 
